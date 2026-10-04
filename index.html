@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sidequest — a little plan for your person</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">Sidequest<span>.</span></a>
+    <div class="topbar-right">
+      <span class="ollama-status" id="ollama-status" title="Checking local AI status...">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking local AI...</span>
+      </span>
+      <span class="privacy">✳ Made with local AI</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <span class="eyebrow">LITTLE PLANS, BIG FRIEND ENERGY</span>
+      <h1>Be the friend who<br>actually makes <em>the plan.</em></h1>
+      <p>Tell us a little about your person. Get back a hangout that feels like it could only be for them.</p>
+    </section>
+
+    <div class="workspace">
+      <form id="planner" class="form-card">
+        <h2>Tell us about your person</h2>
+        <p class="hint">The little details make all the difference.</p>
+
+        <label for="name">Their name</label>
+        <input id="name" name="name" placeholder="e.g. Maya" required>
+
+        <label for="interests">Things they love</label>
+        <textarea id="interests" name="interests" placeholder="e.g. bookstores, matcha, old movies" required></textarea>
+
+        <label for="place">Where are you hanging out?</label>
+        <input id="place" name="place" placeholder="e.g. Brooklyn, or just at home" required>
+
+        <div class="two-col">
+          <div>
+            <label for="mood">Their energy today</label>
+            <select id="mood" name="mood">
+              <option>surprise me</option>
+              <option>low-key & cozy</option>
+              <option>outdoorsy & active</option>
+              <option>curious & creative</option>
+              <option>social & buzzy</option>
+            </select>
+          </div>
+          <div>
+            <label for="budget">Your budget</label>
+            <select id="budget" name="budget">
+              <option>low-cost</option>
+              <option>free if possible</option>
+              <option>a little treat</option>
+              <option>no limit today</option>
+            </select>
+          </div>
+        </div>
+
+        <label>How much time do you have?</label>
+        <div class="time-options">
+          <button type="button" class="time-chip" data-value="1 hour">1 hour</button>
+          <button type="button" class="time-chip selected" data-value="2 hours">2 hours</button>
+          <button type="button" class="time-chip" data-value="half a day">Half a day</button>
+        </div>
+        <input type="hidden" id="duration" name="duration" value="2 hours">
+
+        <button class="submit-button" id="submit" type="submit">
+          <span>Find our little adventure</span><span>↗</span>
+        </button>
+        
+        <div class="form-footer-actions">
+          <button type="button" class="demo-button" id="demo-btn">
+            ✨ Fill with example
+          </button>
+          <p class="local-note">Your friend's details stay on this device.</p>
+        </div>
+      </form>
+
+      <section class="result-card" id="result" aria-live="polite">
+        <div id="empty" class="empty-state">
+          <div class="illustration" aria-hidden="true">
+            <div class="sun"></div>
+            <div class="hill hill-back"></div>
+            <div class="hill hill-front"></div>
+            <span class="tiny-heart">♡</span>
+          </div>
+          <span class="eyebrow">YOUR CANVAS IS READY</span>
+          <h2>A little something<br>to look forward to.</h2>
+          <p>Your friend's one-of-a-kind plan will land here.</p>
+        </div>
+
+        <div id="loading" class="loading-state" hidden>
+          <div class="loader"><span></span><span></span><span></span></div>
+          <p>Thinking of something just right...</p>
+          <span class="loading-hint">Consulting local Qwen model</span>
+        </div>
+
+        <div id="error" class="error-state" hidden>
+          <div class="error-badge">⚠️ Notice</div>
+          <h2>Almost there.</h2>
+          <p id="error-message"></p>
+          <div class="error-actions">
+            <button type="button" class="try-demo-btn" id="try-sample-btn">Try Sample Plan</button>
+            <button type="button" class="reset-button" id="retry-btn">Try Again</button>
+          </div>
+        </div>
+
+        <article id="plan" hidden></article>
+      </section>
+    </div>
+
+    <section class="setup">
+      <span class="eyebrow">LOCAL AI SETUP</span>
+      <p>Sidequest uses the open-source Qwen model through Ollama. Your friend's details stay on your computer.</p>
+      <details id="setup-details">
+        <summary>How to set up</summary>
+        <ol>
+          <li>Install <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a>.</li>
+          <li>Run <code>ollama pull qwen2.5:3b</code> in your terminal.</li>
+          <li>Start Ollama, then run <code>python server.py</code> in the project folder.</li>
+          <li>Open <code>http://127.0.0.1:8000</code> in your browser.</li>
+        </ol>
+      </details>
+    </section>
+  </main>
+
+  <footer>Made for showing up for your people. ✳</footer>
+  <script src="script.js"></script>
+</body>
+</html>
